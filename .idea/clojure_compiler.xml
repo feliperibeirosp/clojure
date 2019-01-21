@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ClojureCompilerSettings">
+    <option name="NS_TO_COMPILE" value="2" />
+    <option name="NAMESPACES">
+      <list>
+        <option value="processing-with-clojure.core" />
+        <option value="processing-with-clojure.core-test" />
+      </list>
+    </option>
+    <option name="CLOJURE_BEFORE" value="true" />
+  </component>
+</project>
