@@ -32,6 +32,6 @@
     {:nome nome :idade idade  :materia materia :nota nota}))
 
 (defn novaListaAlunos [quantidade]
-      ( take quantidade (repeatedly #( conj []  (aluno))  )))
+      ( take quantidade (repeatedly #( conj []  (criaAluno))  )))
 
 
