@@ -17,21 +17,22 @@
 
 (def listaAlunos (list aluno1 aluno2 aluno3))
 
-(def listaNomes (list "Felipe" "Mariana" "Carol" "Pablo" "Carlos"))
 
-(def listaMaterias (list "Portugues" "Matematica" "Biologia" "Historia"))
+(def nameList (list "Bob" "Mary" "Charles" "Steve" "Jack"))
 
-(defn filtraMelhoresAlunos [lista] ( filter #(> (:nota %) 9) lista ))
+(def subjectList (list "Math" "English" "History" "Music"))
 
-(defn  criaAluno []
+(defn bestStudentsFilter [list] ( filter #(> (:grade %) 5) list ))
+
+(defn  newStudent [names subjects]
   (let [
-        nome (rand-nth listaNomes)
-        idade (+ (rand-int 15) 10)
-        nota (rand-int 10)
-        materia (rand-nth listaMaterias)]
-    {:nome nome :idade idade  :materia materia :nota nota}))
+        name (rand-nth names)
+        age (+ (rand-int 15) 10)
+        grade (rand-int 10)
+        subject (rand-nth subjects)]
+    {:name name :age age  :grade grade :subject subject}))
 
-(defn novaListaAlunos [quantidade]
-      ( take quantidade (repeatedly #( conj []  (criaAluno))  )))
+(defn newStudentsList [quant names subjects]
+    ( take quant (repeatedly #(   newStudent names subjects)  )))
 
 
