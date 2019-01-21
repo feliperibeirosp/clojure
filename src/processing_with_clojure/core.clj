@@ -23,6 +23,7 @@
 (def subjectList (list "Math" "English" "History" "Music"))
 
 (defn bestStudentsFilter [list] ( filter #(> (:grade %) 5) list ))
+(defn subjectFilter [list subject] ( filter #(= (:subject %) subject) list ))
 
 (defn  newStudent [names subjects]
   (let [
@@ -34,5 +35,19 @@
 
 (defn newStudentsList [quant names subjects]
     ( take quant (repeatedly #(   newStudent names subjects)  )))
+
+(defn addAluno [aluno list]
+  ( conj list aluno))
+
+(defn adicionaAluno [aluno list]
+  (
+    let [
+         name2 (:name aluno )
+         ]
+     (if true
+    ( conj list aluno)
+    ) ))
+
+
 
 
