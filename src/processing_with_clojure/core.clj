@@ -23,7 +23,7 @@
 
 (defn filtraMelhoresAlunos [lista] ( filter #(> (:nota %) 9) lista ))
 
-(defn aluno []
+(defn  criaAluno []
   (let [
         nome (rand-nth listaNomes)
         idade (+ (rand-int 15) 10)
