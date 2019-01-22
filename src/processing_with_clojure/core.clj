@@ -22,32 +22,46 @@
 
 (def subjectList (list "Math" "English" "History" "Music"))
 
-(defn bestStudentsFilter [list] ( filter #(> (:grade %) 5) list ))
-(defn subjectFilter [list subject] ( filter #(= (:subject %) subject) list ))
+(defn bestStudentsFilter [list] (filter #(> (:grade %) 5) list))
+(defn subjectFilter [list subject] (filter #(= (:subject %) subject) list))
 
-(defn  newStudent [names subjects]
+(defn newStudent [names subjects]
   (let [
         name (rand-nth names)
         age (+ (rand-int 15) 10)
         grade (rand-int 10)
         subject (rand-nth subjects)]
-    {:name name :age age  :grade grade :subject subject}))
+    {:name name :age age :grade grade :subject subject}))
 
 (defn newStudentsList [quant names subjects]
-    ( take quant (repeatedly #(   newStudent names subjects)  )))
+  (take quant (repeatedly #(newStudent names subjects))))
 
 (defn addAluno [aluno list]
-  ( conj list aluno))
+  (conj list aluno))
 
 (defn adicionaAluno [aluno list]
   (
     let [
-         name2 (:name aluno )
+         name2 (:name aluno)
          ]
-     (if true
-    ( conj list aluno)
-    ) ))
+    (if true
+      (conj list aluno)
+      )))
 
 
+; (defn mesmoNome? [aluno nome]
+;(= (:name aluno) nome))
+
+
+;(defn procuraNomeLista? [name list] (filter #(mesmoNome? % name) list))
+
+(defn fn-mesmoNome?
+  [nome]
+  (fn [item ]
+    (= nome (:name item))))
+
+(defn buscaPorCriterio
+  [nome lista]
+  (first (filter (fn-mesmoNome? nome) lista)))
 
 
