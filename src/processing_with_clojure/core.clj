@@ -56,7 +56,7 @@
 
 
 
-(def crialistaAlunos
+(def crialistaAlunosUnico
   (fn [quant nameList subjectList]
     (loop [
            list []]
