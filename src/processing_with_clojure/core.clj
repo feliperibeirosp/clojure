@@ -36,32 +36,37 @@
 (defn newStudentsList [quant names subjects]
   (take quant (repeatedly #(newStudent names subjects))))
 
-(defn addAluno [aluno list]
-  (conj list aluno))
-
-(defn adicionaAluno [aluno list]
-  (
-    let [
-         name2 (:name aluno)
-         ]
-    (if true
-      (conj list aluno)
-      )))
-
-
-; (defn mesmoNome? [aluno nome]
-;(= (:name aluno) nome))
-
-
-;(defn procuraNomeLista? [name list] (filter #(mesmoNome? % name) list))
-
 (defn fn-mesmoNome?
   [nome]
-  (fn [item ]
+  (fn [item]
     (= nome (:name item))))
 
 (defn buscaPorCriterio
   [nome lista]
   (first (filter (fn-mesmoNome? nome) lista)))
 
+(defn adicionaAluno [aluno list]
+  (
+    let [
+         name2 (:name aluno)
+         ]
+    (if (not (buscaPorCriterio name2 list))
+      (conj list aluno)
+      )))
+
+
+
+(def crialistaAlunos
+  (fn [quant nameList subjectList]
+    (loop [
+           list []]
+       (if (= (= quant (count list)) (> (count nameList) (count list)))
+        list
+        (recur  (adicionaAluno (newStudent nameList subjectList) list))
+        ))))
+
+
+
+
+(def aluno4 {:name "Mariana" :age 18 :materia "matematica" :nota 4})
 
