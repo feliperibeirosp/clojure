@@ -42,18 +42,43 @@
   (fn [item]
     (= nome (:name item))))
 
+(defn fn-mesmaMateria?
+  [materia]
+  (fn [item]
+    (= materia (:subject item))))
+
+(defn fn-mesmaIdade?
+  [age]
+  (fn [item]
+    (= age (:age item))))
+
+(defn criterioAlunoMateriaIdade? [name age subject]
+
+    (fn [item] (fn-mesmoNome? name))
+
+
+  )
+
+
 (defn buscaPorCriterio
-  [nome lista]
-  (first (filter (fn-mesmoNome? nome) lista)))
+  [name age subject lista criterio]
+  (first (filter (criterio name age subject) lista)))
+
+
 
 (defn adicionaAluno [aluno list]
   (
-    let [
-         name2 (:name aluno)
-         ]
-    (if (not (buscaPorCriterio name2 list))
+  let [
+        name (:name aluno)
+        age (:age aluno)
+        subject (:subject aluno)
+        ]
+
+    (if  (buscaPorCriterio name age subject list criterioAlunoMateriaIdade? )
       (conj list aluno)
-      )))
+      )
+    )
+    )
 
 
 
