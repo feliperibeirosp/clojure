@@ -5,6 +5,10 @@
 (def aluno2 {:name "Maria" :age 24 :materia "portugues" :nota 8})
 (def aluno3 {:name "Joao" :age 18 :materia "matematica" :nota 4})
 
+(def aluno4 {:name "Mariana" :age 18 :materia "matematica" :nota 4})
+
+(def aluno5 {:name "Felipe" :age 26 :materia "biologia" :nota 10})
+
 (def listaAlunos (list aluno1 aluno2 aluno3))
 
 
@@ -40,31 +44,25 @@
 
 
  (defn mesmoValorPropriedade? [lista aluno propriedade]
-(filter #(= (:propriedade %) (propriedade aluno)) lista))
+(filter #(= (propriedade %) (propriedade aluno)) lista))
 
-
+ (defn valorDiferentePropriedade? [lista aluno propriedade]
+(filter #(not (= (propriedade %) (propriedade aluno))) lista))
 
 (defn buscaPorCriterio
   [funcao lista aluno propriedade]
    (funcao  lista aluno propriedade ))
 
-(defn adicionaAluno [aluno list]
-  ( if (or (empty (buscaPorCriterio mesmoValorPropriedade lista aluno :nome))
-           (and (not-empty (buscaPorCriterio mesmoValorPropriedade lista aluno :nome))
-                (not-empty (buscaPorCriterio mesmoValorPropriedade lista aluno :age))
-                (empty (buscaPorCriterio mesmoValorPropriedade lista aluno :subject)))
-           )
-    (conj list aluno)
+;verificar se tem mesmo nome e mesma idade
+(defn adicionaAluno [aluno lista]
+  (if (or (empty (buscaPorCriterio mesmoValorPropriedade? lista aluno :name))
+          (not-empty (buscaPorCriterio mesmoValorPropriedade? (buscaPorCriterio mesmoValorPropriedade?
+                                                                                (buscaPorCriterio valorDiferentePropriedade? lista aluno :subject)
+                                                                                aluno :age) aluno :name))
+          )
+    (conj lista aluno)
     )
   )
-
-if ()
-    ; (if (or (not (buscaPorCriterio aluno :nome list fn-mesmoNome?))
-
-    ; (and (boolean (buscaPorCriterio aluno :nome list fn-mesmoNome?))
-    ;   (boolean (buscaPorCriterio aluno :age list fn-mesmaIdade?))
-    ;    (not (buscaPorCriterio aluno :grade list fn-mesmaMateria?))
-
 
 (def crialistaAlunosUnico
   (fn [quant nameList subjectList]
@@ -78,7 +76,6 @@ if ()
 
 
 
-(def aluno4 {:name "Mariana" :age 18 :materia "matematica" :nota 4})
 
 (defn -main
   "I don't do a whole lot ... yet."
