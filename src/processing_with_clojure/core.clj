@@ -59,12 +59,11 @@
           (and (not-empty (buscaPorCriterio mesmoValorPropriedade? (buscaPorCriterio mesmoValorPropriedade?
                                                                                 lista
                                                                                 aluno :name) aluno :age))
-          (empty (buscaPorCriterio mesmoValorPropriedade? (buscaPorCriterio mesmoValorPropriedade?
+                   (empty (buscaPorCriterio mesmoValorPropriedade? (buscaPorCriterio mesmoValorPropriedade?
                                                                                 (buscaPorCriterio mesmoValorPropriedade?
                                                                                 lista
                                                                                 aluno :name)
-                                                                                aluno :age) aluno :subject)
-          )))
+                                                                                aluno :age) aluno :subject))))
     (conj lista aluno)
     )
   )
