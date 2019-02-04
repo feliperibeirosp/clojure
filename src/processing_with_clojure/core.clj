@@ -56,10 +56,15 @@
 ;verificar se tem mesmo nome e mesma idade
 (defn adicionaAluno [aluno lista]
   (if (or (empty (buscaPorCriterio mesmoValorPropriedade? lista aluno :name))
-          (not-empty (buscaPorCriterio mesmoValorPropriedade? (buscaPorCriterio mesmoValorPropriedade?
-                                                                                (buscaPorCriterio valorDiferentePropriedade? lista aluno :subject)
-                                                                                aluno :age) aluno :name))
-          )
+          (and (not-empty (buscaPorCriterio mesmoValorPropriedade? (buscaPorCriterio mesmoValorPropriedade?
+                                                                                lista
+                                                                                aluno :name) aluno :age))
+          (empty (buscaPorCriterio mesmoValorPropriedade? (buscaPorCriterio mesmoValorPropriedade?
+                                                                                (buscaPorCriterio mesmoValorPropriedade?
+                                                                                lista
+                                                                                aluno :name)
+                                                                                aluno :age) aluno :subject)
+          )))
     (conj lista aluno)
     )
   )
