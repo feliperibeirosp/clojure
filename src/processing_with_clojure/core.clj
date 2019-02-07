@@ -88,6 +88,7 @@
   (println "Hello  World!")
   (def lista (crialistaAlunosUnico 20 nameList subjectList))
   (run! println (ordenarLista lista))
-  (println "Alunos Com Melhores Notas")
+  (println "Alunos Com Melhores Notas - *Notas Maiores que 7")
+  (println  "Quantidade Alunos: " (count (bestStudentsFilter lista)))
   (run! println (bestStudentsFilter lista))
   )
