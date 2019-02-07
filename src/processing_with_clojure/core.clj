@@ -7,7 +7,7 @@
 
 (def aluno4 {:name "Mariana" :age 18 :materia "matematica" :nota 4})
 
-(def aluno5 {:name "Felipe" :age 26 :materia "biologia" :nota 10})
+(def aluno5 {:name "Felipe" :age 27 :materia "biologia" :nota 10})
 
 (def listaAlunos (list aluno1 aluno2 aluno3))
 
@@ -28,7 +28,7 @@
 
 (def subjectList (list "Math" "English" "History" "Music" "Portuguese" "Biology" "Science" "Designer" "Geography" "Art" "Physical Education"))
 
-(defn bestStudentsFilter [list] (filter #(> (:grade %) 5) list))
+(defn bestStudentsFilter [list] (filter #(> (:grade %) 7) list))
 (defn subjectFilter [list subject] (filter #(= (:subject %) subject) list))
 
 (defn newStudent [names subjects]
@@ -55,11 +55,11 @@
 
 ;verificar se tem mesmo nome e mesma idade
 (defn adicionaAluno [aluno lista]
-  (if (or (empty (buscaPorCriterio mesmoValorPropriedade? lista aluno :name))
-          (and (not-empty (buscaPorCriterio mesmoValorPropriedade? (buscaPorCriterio mesmoValorPropriedade?
+  (if (or (empty? (buscaPorCriterio mesmoValorPropriedade? lista aluno :name))
+          (and (not (empty? (buscaPorCriterio mesmoValorPropriedade? (buscaPorCriterio mesmoValorPropriedade?
                                                                                 lista
-                                                                                aluno :name) aluno :age))
-                   (empty (buscaPorCriterio mesmoValorPropriedade? (buscaPorCriterio mesmoValorPropriedade?
+                                                                                aluno :name) aluno :age)))
+                   (empty? (buscaPorCriterio mesmoValorPropriedade? (buscaPorCriterio mesmoValorPropriedade?
                                                                                 (buscaPorCriterio mesmoValorPropriedade?
                                                                                 lista
                                                                                 aluno :name)
@@ -79,10 +79,15 @@
 
 
 
-
+(defn ordenarLista [lista]
+              (sort-by #(:name %) lista))
 
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
   (println "Hello  World!")
-  (println aluno1))
+  (def lista (crialistaAlunosUnico 20 nameList subjectList))
+  (run! println (ordenarLista lista))
+  (println "Alunos Com Melhores Notas")
+  (run! println (bestStudentsFilter lista))
+  )
