@@ -7,7 +7,7 @@
 
 (def aluno4 {:name "Mariana" :age 18 :materia "matematica" :nota 4})
 
-(def aluno5 {:name "Felipe" :age 27 :materia "biologia" :nota 10})
+(def aluno5 {:name "Felipe" :age 26 :materia "biologia" :nota 10})
 
 (def listaAlunos (list aluno1 aluno2 aluno3))
 
@@ -55,10 +55,8 @@
 
 ;verificar se tem mesmo nome e mesma idade
 (defn adicionaAluno [aluno lista]
-  (if (or (empty? (buscaPorCriterio mesmoValorPropriedade? lista aluno :name))
-          (and (not (empty? (buscaPorCriterio mesmoValorPropriedade? (buscaPorCriterio mesmoValorPropriedade?
-                                                                                lista
-                                                                                aluno :name) aluno :age)))
+  (if (or (nameEquals? lista aluno)
+          (and (not (nameAndAgeEquals lista aluno))
                    (empty? (buscaPorCriterio mesmoValorPropriedade? (buscaPorCriterio mesmoValorPropriedade?
                                                                                 (buscaPorCriterio mesmoValorPropriedade?
                                                                                 lista
@@ -67,6 +65,25 @@
     (conj lista aluno)
     )
   )
+
+
+(defn nameAndAgeAndSubjectEquals? [lista aluno]
+  (empty? (buscaPorCriterio mesmoValorPropriedade? (buscaPorCriterio mesmoValorPropriedade?
+                                                                                (buscaPorCriterio mesmoValorPropriedade?
+                                                                                lista
+                                                                                aluno :name)
+                                                                                aluno :age) aluno :subject))
+  )
+
+(defn nameAndAgeEquals? [lista aluno]
+  (empty? (buscaPorCriterio mesmoValorPropriedade? (buscaPorCriterio mesmoValorPropriedade?
+                                                                                lista
+                                                                                aluno :name) aluno :age))
+  )
+
+(defn nameEquals? [lista aluno]
+  (empty? (buscaPorCriterio mesmoValorPropriedade? lista aluno :name) )
+)
 
 (def crialistaAlunosUnico
   (fn [quant nameList subjectList]
